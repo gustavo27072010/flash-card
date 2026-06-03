@@ -5,3 +5,135 @@
 body{
     background-color: rgb(251, 251, 251);
 }
+/* Reset Geral */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #1e1e24; /* Tom mais escuro combinando com esportes */
+    color: #fff;
+    text-align: center;
+    padding-bottom: 60px;
+}
+
+/* Cabeçalho */
+.cabecalho {
+    background-color: #111;
+    padding: 20px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #ff4a5a; /* Detalhe em vermelho esportivo */
+}
+
+.cabecalho h1 {
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+}
+
+.cabecalho nav a {
+    color: #ff4a5a;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+main h2 {
+    margin: 40px 20px;
+    color: #e0e0e0;
+    font-size: 1.4rem;
+}
+
+/* Estrutura do Flip Card (Girar) */
+.conteiner-cartao {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.cartao {
+    width: 320px;
+    height: 420px;
+    perspective: 1000px; /* Profundidade 3D */
+}
+
+.cartao-interno {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    border-radius: 12px;
+}
+
+/* Ação de passar o mouse */
+.cartao:hover .cartao-interno {
+    transform: rotateY(180deg);
+}
+
+/* Configuração das duas faces */
+.cartao-frente, .cartao-verso {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Esconde o fundo enquanto gira */
+    border-radius: 12px;
+    background-color: #2a2a35;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #444;
+}
+
+/* Ajuste da face de trás */
+.cartao-verso {
+    transform: rotateY(180deg);
+    background-color: #223322; /* Fundo levemente verde para a verdade */
+    border-color: #2e7d32;
+}
+
+/* Imagens do Card */
+.cartao-imagem {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Estilo do Texto */
+.cartao p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: #eee;
+    margin-top: 15px;
+}
+
+/* Badges de Mito e Verdade */
+.status {
+    font-weight: bold;
+    font-size: 0.9rem;
+    padding: 6px 15px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+}
+.mito { background-color: #d32f2f; color: #fff; }
+.verdade { background-color: #388e3c; color: #fff; }
+
+/* Rodapé */
+footer {
+    background-color: #111;
+    color: #888;
+    padding: 15px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 0.9rem;
+    border-top: 1px solid #222;
+}
