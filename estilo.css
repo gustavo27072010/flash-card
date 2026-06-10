@@ -1,159 +1,113 @@
-/* ==========================================================================
-   1. CONFIGURAÇÕES GERAIS E RESETS
-   ========================================================================== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Sports - Mito ou Verdade</title>
+    <link rel="stylesheet" href="./estilo.css">
+</head>
+<body>
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #121214;
-    color: #e1e1e6;
-    line-height: 1.6;
-}
+    <header class="cabecalho"> 
+        <h1>CONTACT SPORTS</h1> 
+        <nav> 
+            <a href="#">Início</a> 
+        </nav> 
+    </header> 
 
-/* ==========================================================================
-   2. CABEÇALHO E RODAPÉ
-   ========================================================================== */
-.cabecalho {
-    background-color: #202024;
-    padding: 1.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px solid #ff4757;
-}
+    <main> 
+        <h2>Descubra a verdade sobre os esportes de contato passando o mouse</h2> 
+        
+        <section class="conteiner-grid"> 
+            
+            <!-- CARTÃO 1: RUGBY (IMAGENS CORRIGIDAS) -->
+            <article class="cartao"> 
+                <div class="cartao-interno"> 
+                    <div class="cartao-frente"> 
+                        <!-- Imagem do esporte Rugby na frente -->
+                        <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=600" alt="Rugby" class="cartao-imagem"> 
+                        <p class="status mito">MITO</p>
+                        <p>O Rugby e o Futebol Americano são o mesmo esporte, só mudam os equipamentos.</p> 
+                    </div> 
+                    <div class="cartao-verso"> 
+                        <!-- Imagem do esporte Rugby no verso -->
+                        <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=600" alt="Rugby" class="cartao-imagem"> 
+                        <p class="status verdade">VERDADE</p>
+                        <p>Eles são esportes totalmente diferentes! Mudam as regras, tempos, número de atletas e a dinâmica do jogo.</p> 
+                    </div> 
+                </div> 
+            </article>
 
-.cabecalho h1 {
-    font-size: 1.8rem;
-    color: #ff4757;
-    letter-spacing: 2px;
-}
+            <!-- CARTÃO 2: BOXE -->
+            <article class="cartao"> 
+                <div class="cartao-interno"> 
+                    <div class="cartao-frente"> 
+                        <img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=600" alt="Luvas de Boxe" class="cartao-imagem"> 
+                        <p class="status mito">MITO</p>
+                        <p>As luvas de boxe servem principalmente para proteger a cabeça do oponente que recebe o golpe.</p> 
+                    </div> 
+                    <div class="cartao-verso"> 
+                        <img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=600" alt="Luvas de Boxe" class="cartao-imagem"> 
+                        <p class="status verdade">VERDADE</p>
+                        <p>As luvas foram criadas para proteger as mãos e os pequenos ossos do próprio boxeador que ataca.</p> 
+                    </div> 
+                </div> 
+            </article>
 
-.cabecalho nav a {
-    color: #e1e1e6;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
-}
+            <!-- CARTÃO 3: JUDÔ -->
+            <article class="cartao"> 
+                <div class="cartao-interno"> 
+                    <div class="cartao-frente"> 
+                        <img src="https://images.unsplash.com/photo-1555597673-b21d5c935865?q=80&w=600" alt="Luta de Judô" class="cartao-imagem"> 
+                        <p class="status mito">MITO</p>
+                        <p>O objetivo principal do Judô é machucar ou nocautear o adversário usando a força bruta.</p> 
+                    </div> 
+                    <div class="cartao-verso"> 
+                        <img src="https://images.unsplash.com/photo-1555597673-b21d5c935865?q=80&w=600" alt="Luta de Judô" class="cartao-imagem"> 
+                        <p class="status verdade">VERDADE</p>
+                        <p>O foco é usar a própria força e o peso do oponente para desestabilizá-lo por meio de projeções e imobilizações.</p> 
+                    </div> 
+                </div> 
+            </article>
 
-.cabecalho nav a:hover {
-    color: #ff4757;
-}
+            <!-- CARTÃO 4: HÓQUEI -->
+            <article class="cartao"> 
+                <div class="cartao-interno"> 
+                    <div class="cartao-frente"> 
+                        <img src="https://images.unsplash.com/photo-1515523110800-94154745c873?q=80&w=600" alt="Hóquei no Gelo" class="cartao-imagem"> 
+                        <p class="status mito">MITO</p>
+                        <p>No Hóquei no Gelo, as brigas físicas entre os jogadores são totalmente liberadas pelas regras oficiais.</p> 
+                    </div> 
+                    <div class="cartao-verso"> 
+                        <img src="https://images.unsplash.com/photo-1515523110800-94154745c873?q=80&w=600" alt="Hóquei no Gelo" class="cartao-imagem"> 
+                        <p class="status verdade">VERDADE</p>
+                        <p>As brigas geram penalidades severas no tempo de jogo e expulsões, mas fazem parte da cultura tradicional do esporte.</p> 
+                    </div> 
+                </div> 
+            </article>
 
-main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-}
+            <!-- CARTÃO 5: TAEKWONDO -->
+            <article class="cartao"> 
+                <div class="cartao-interno"> 
+                    <div class="cartao-frente"> 
+                        <img src="https://images.unsplash.com/photo-1555597672-b236825c02ba?q=80&w=600" alt="Taekwondo" class="cartao-imagem"> 
+                        <p class="status mito">MITO</p>
+                        <p>No Taekwondo olímpico, socos e chutes na cabeça somam exatamente a mesma pontuação.</p> 
+                    </div> 
+                    <div class="cartao-verso"> 
+                        <img src="https://images.unsplash.com/photo-1555597672-b236825c02ba?q=80&w=600" alt="Taekwondo" class="cartao-imagem"> 
+                        <p class="status verdade">VERDADE</p>
+                        <p>Os chutes na cabeça ou com giros pontuam muito mais, pois exigem muito mais técnica e flexibilidade.</p> 
+                    </div> 
+                </div> 
+            </article>
 
-main h2 {
-    text-align: center;
-    margin-bottom: 3rem;
-    font-size: 1.5rem;
-    color: #a8a8b3;
-}
+        </section> 
+    </main> 
 
-footer {
-    text-align: center;
-    padding: 2rem;
-    background-color: #202024;
-    color: #7c7c8a;
-    margin-top: 3rem;
-    border-top: 1px solid #29292e;
-}
+    <footer> 
+        <p>Projeto feito por Gustavo H. e Miguel M.</p> 
+    </footer> 
 
-/* ==========================================================================
-   3. LAYOUT GRID (ORGANIZAÇÃO DOS CARTÕES)
-   ========================================================================== */
-.conteiner-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2.5rem;
-    justify-content: center;
-}
-
-/* ==========================================================================
-   4. EFEITO FLIP CARD (3D)
-   ========================================================================== */
-.cartao {
-    background-color: transparent;
-    height: 400px;
-    perspective: 1000px; /* Cria o efeito de profundidade 3D */
-}
-
-.cartao-interno {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-style: preserve-3d; /* Garante que os lados fiquem em 3D */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    border-radius: 12px;
-}
-
-/* Ativa a rotação quando passa o mouse */
-.cartao:hover .cartao-interno {
-    transform: rotateY(180deg);
-}
-
-.cartao-frente, .cartao-verso {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden; /* Esconde a parte de trás enquanto vira */
-    backface-visibility: hidden;
-    border-radius: 12px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    background-color: #202024;
-    border: 2px solid #29292e;
-}
-
-/* Ajustes específicos do Verso */
-.cartao-verso {
-    transform: rotateY(180deg); /* Já começa invertido */
-    border-color: #2ed573;
-}
-
-/* Imagens dos cartões */
-.cartao-imagem {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    filter: brightness(0.7);
-}
-
-/* Textos informativos dentro dos cartões */
-.cartao p:not(.status) {
-    padding: 1.5rem;
-    font-size: 1.1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-grow: 1;
-}
-
-/* ==========================================================================
-   5. ESTILIZAÇÃO DOS STATUS (MITO / VERDADE)
-   ========================================================================== */
-.status {
-    font-weight: 900;
-    font-size: 1.4rem;
-    padding: 0.5rem 0;
-    letter-spacing: 3px;
-}
-
-.status.mito {
-    background-color: #ff4757;
-    color: #ffffff;
-}
-
-.status.verdade {
-    background-color: #2ed573;
-    color: #ffffff;
-}
+</body>
+</html>
