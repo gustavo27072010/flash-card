@@ -1,4 +1,3 @@
-CSS
 /* ==========================================================================
    RESET E CONFIGURAÇÕES GERAIS
    ========================================================================== */
@@ -84,8 +83,8 @@ footer {
    ========================================================================== */
 .cartao {
     background-color: transparent;
-    height: 400px;
-    perspective: 1000px; /* Ativa o efeito de profundidade 3D */
+    height: 480px; /* Aumentado de 400px para 480px para caber a imagem no verso */
+    perspective: 1000px;
 }
 
 .cartao-interno {
@@ -98,7 +97,6 @@ footer {
     cursor: pointer;
 }
 
-/* Faz o cartão girar 180 graus no eixo Y ao passar o mouse */
 .cartao:hover .cartao-interno {
     transform: rotateY(180deg);
 }
@@ -107,7 +105,7 @@ footer {
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-backface-visibility: hidden; /* Esconde a face oposta durante a rotação */
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border-radius: 12px;
     overflow: hidden;
@@ -118,7 +116,6 @@ footer {
     flex-direction: column;
 }
 
-/* O verso surge já rotacionado por padrão */
 .cartao-verso {
     transform: rotateY(180deg);
     background-color: #2d2d2d;
@@ -129,14 +126,14 @@ footer {
    ========================================================================== */
 .cartao-imagem {
     width: 100%;
-    height: 180px;
-    object-fit: cover; /* Evita que as fotos fiquem distorcidas */
+    height: 160px; /* Reduzido levemente de 180px para dar mais espaço ao texto do verso */
+    object-fit: cover;
 }
 
 .cartao p:not(.status) {
-    padding: 20px;
-    font-size: 1.05rem;
-    line-height: 1.5;
+    padding: 15px;
+    font-size: 1rem;
+    line-height: 1.4;
     color: #e0e0e0;
     flex-grow: 1;
     display: flex;
@@ -147,9 +144,10 @@ footer {
 /* Estilização das faixas de MITO e VERDADE */
 .status {
     font-weight: 900;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     padding: 8px 0;
     letter-spacing: 3px;
+    text-transform: uppercase;
 }
 
 .status.mito {
