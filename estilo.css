@@ -1,6 +1,6 @@
-/* ==========================================================================
-   RESET E CONFIGURAÇÕES GERAIS
-   ========================================================================== */
+/* =========================================
+   Reset e Configurações Globais
+   ========================================= */
 * {
     margin: 0;
     padding: 0;
@@ -9,82 +9,75 @@
 }
 
 body {
-    background-color: #1a1a1a;
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    background-color: #f4f7f6;
+    color: #333;
+    line-height: 1.6;
 }
 
-/* ==========================================================================
-   CABEÇALHO E RODAPÉ
-   ========================================================================== */
+/* =========================================
+   Cabeçalho (Header)
+   ========================================= */
 .cabecalho {
-    background-color: #111;
-    padding: 20px;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 1.5rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 3px solid #ff4757;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .cabecalho h1 {
     font-size: 1.8rem;
+    text-transform: uppercase;
     letter-spacing: 2px;
 }
 
 .cabecalho nav a {
-    color: #ffffff;
+    color: #f1c40f;
     text-decoration: none;
     font-weight: bold;
-    transition: color 0.3s;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
 }
 
 .cabecalho nav a:hover {
-    color: #ff4757;
+    color: #fff;
 }
 
+/* =========================================
+   Conteúdo Principal (Main)
+   ========================================= */
 main {
-    flex: 1;
-    padding: 40px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 100%;
+    padding: 3rem 2rem;
+    text-align: center;
 }
 
 main h2 {
-    text-align: center;
-    margin-bottom: 40px;
-    font-weight: 400;
-    color: #ccc;
+    color: #2c3e50;
+    margin-bottom: 2.5rem;
+    font-size: 1.5rem;
 }
 
-footer {
-    background-color: #111;
-    text-align: center;
-    padding: 15px;
-    font-size: 0.9rem;
-    color: #aaa;
-    border-top: 1px solid #333;
-}
-
-/* ==========================================================================
-   ESTRUTURA DO GRID RESPONSIVO
-   ========================================================================== */
+/* =========================================
+   Grid de Cartões
+   ========================================= */
 .conteiner-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* ==========================================================================
-   EFEITO FLIP 3D (PASSAR O MOUSE)
-   ========================================================================== */
+/* =========================================
+   Efeito Flip Card 3D
+   ========================================= */
 .cartao {
     background-color: transparent;
-    height: 480px; /* Aumentado de 400px para 480px para caber a imagem no verso */
-    perspective: 1000px;
+    width: 100%;
+    height: 420px;
+    perspective: 1000px; /* Cria o espaço 3D */
 }
 
 .cartao-interno {
@@ -92,70 +85,68 @@ footer {
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.6s ease-in-out;
+    transition: transform 0.8s; /* Velocidade do giro */
     transform-style: preserve-3d;
-    cursor: pointer;
 }
 
+/* O gatilho: gira o cartão no hover */
 .cartao:hover .cartao-interno {
     transform: rotateY(180deg);
 }
 
-.cartao-frente, .cartao-verso {
+.cartao-frente, 
+.cartao-verso {
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden; /* Esconde o verso p/ Safari */
+    backface-visibility: hidden;         /* Esconde o verso */
     border-radius: 12px;
     overflow: hidden;
-    background-color: #262626;
-    border: 1px solid #3d3d3d;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
+    background-color: #ffffff;
 }
 
 .cartao-verso {
-    transform: rotateY(180deg);
-    background-color: #2d2d2d;
+    transform: rotateY(180deg); /* O verso já começa virado de costas */
+    background-color: #fafafa;
 }
 
-/* ==========================================================================
-   CONTEÚDO INTERNO DOS CARTÕES
-   ========================================================================== */
+/* =========================================
+   Conteúdo dos Cartões
+   ========================================= */
 .cartao-imagem {
     width: 100%;
-    height: 160px; /* Reduzido levemente de 180px para dar mais espaço ao texto do verso */
+    height: 220px;
     object-fit: cover;
+    border-bottom: 3px solid #eee;
 }
 
-.cartao p:not(.status) {
-    padding: 15px;
+.cartao-frente p, 
+.cartao-verso p {
+    padding: 1rem 1.5rem;
     font-size: 1rem;
-    line-height: 1.4;
-    color: #e0e0e0;
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    color: #555;
 }
 
-/* Estilização das faixas de MITO e VERDADE */
+/* Etiquetas de Status */
 .status {
-    font-weight: 900;
-    font-size: 1.1rem;
-    padding: 8px 0;
-    letter-spacing: 3px;
-    text-transform: uppercase;
+    padding: 0.4rem 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 20px;
+    width: max-content;
+    margin: 1rem auto 0.5rem;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
 }
 
-.status.mito {
-    background-color: #ff4757;
-    color: #fff;
+.mito {
+    background-color: #e74c3c; /* Vermelho */
 }
 
-.status.verdade {
-    background-color: #2ed573;
-    color: #fff;
+.verdade {
+    background-color: #2ecc71; /* Verde */
 }
