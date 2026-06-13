@@ -1,11 +1,13 @@
 /* =========================================
-   VARIÁVEIS DE CORES E ESTILO
+   VARIÁVEIS DE CORES E ESTILO (MODO ESCURO)
    ========================================= */
 :root {
-  --primary-color: #1a252f;
-  --secondary-color: #e74c3c; /* Vermelho para Mito */
-  --truth-color: #2ecc71;     /* Verde para Verdade */
-  --bg-color: #ecf0f1;
+  --bg-color: #121212;          /* Fundo principal da página super escuro */
+  --primary-color: #1e1e1e;     /* Fundo do cabeçalho, rodapé e verso dos cartões */
+  --text-color: #e0e0e0;        /* Cor do texto geral mais clara para leitura */
+  --secondary-color: #ff5252;   /* Vermelho vibrante para o Mito */
+  --truth-color: #69f0ae;       /* Verde neon sutil para a Verdade */
+  --accent-color: #f1c40f;      /* Amarelo para os títulos */
   --card-radius: 15px;
   --transition-speed: 0.8s;
 }
@@ -22,7 +24,7 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: var(--bg-color);
-  color: #333;
+  color: var(--text-color);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -33,17 +35,17 @@ body {
    ========================================= */
 .main-header {
   background-color: var(--primary-color);
-  color: #fff;
   padding: 50px 20px;
   text-align: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8); /* Sombra mais densa pro modo escuro */
+  border-bottom: 2px solid #333;
 }
 
 .main-header h1 {
   font-size: 3rem;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: #f1c40f;
+  color: var(--accent-color);
   margin-bottom: 15px;
 }
 
@@ -51,25 +53,25 @@ body {
   font-size: 1.2rem;
   max-width: 700px;
   margin: 0 auto;
-  color: #bdc3c7;
+  color: #a0a0a0;
 }
 
 /* =========================================
-   GRADE DE CARTÕES (CSS GRID)
+   GRADE DE CARTÕES (TAMANHOS IGUAIS)
    ========================================= */
 .container {
   max-width: 1200px;
-  margin: -40px auto 40px; /* Sobrepõe levemente o cabeçalho para dar profundidade */
+  margin: -40px auto 50px; /* Sobrepõe o cabeçalho para estilo moderno */
   padding: 0 20px;
-  flex-grow: 1; /* Empurra o rodapé para baixo se houver pouco conteúdo */
+  flex-grow: 1;
   z-index: 10;
   position: relative;
 }
 
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Organiza em colunas adaptáveis */
-  gap: 40px; /* Espaçamento entre os cartões */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
 }
 
 /* =========================================
@@ -78,8 +80,8 @@ body {
 .flip-card {
   background-color: transparent;
   width: 100%;
-  height: 420px; /* Mantém todos os cartões exatamente com a mesma altura */
-  perspective: 1200px; /* Profundidade do efeito 3D */
+  height: 420px; /* Altura fixa garante que todos os cartões tenham o mesmo tamanho */
+  perspective: 1200px;
 }
 
 .flip-card-inner {
@@ -91,7 +93,7 @@ body {
   transform-style: preserve-3d;
 }
 
-/* Aciona o giro quando o mouse passa por cima */
+/* O Flip ao passar o mouse */
 .flip-card:hover .flip-card-inner {
   transform: rotateY(180deg);
 }
@@ -100,33 +102,32 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  -webkit-backface-visibility: hidden; /* Safari */
-  backface-visibility: hidden; /* Esconde o lado oposto */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   border-radius: var(--card-radius);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-  overflow: hidden; /* Evita que o conteúdo vaze pelas bordas arredondadas */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6); /* Sombra mais evidente contra o fundo preto */
+  overflow: hidden;
 }
 
 /* =========================================
-   FRENTE DO CARTÃO (IMAGEM E TÍTULO)
+   FRENTE DO CARTÃO
    ========================================= */
 .flip-card-front {
-  background-color: #fff;
-  position: relative;
+  background-color: #000;
 }
 
 .flip-card-front img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ajusta a imagem sem distorcer */
-  filter: brightness(85%); /* Escurece a imagem levemente para destacar o texto */
+  object-fit: cover;
+  filter: brightness(70%); /* Deixa a imagem mais escura para combinar com o tema */
 }
 
 .front-title {
   position: absolute;
   bottom: 0;
   width: 100%;
-  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); /* Gradiente escuro na base */
+  background: linear-gradient(to top, rgba(0,0,0,1), transparent);
   padding: 40px 20px 20px;
   text-align: left;
 }
@@ -143,8 +144,8 @@ body {
    ========================================= */
 .flip-card-back {
   background-color: var(--primary-color);
-  color: white;
-  transform: rotateY(180deg); /* Já começa invertido */
+  border: 1px solid #333; /* Borda sutil para separar do fundo */
+  transform: rotateY(180deg);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -153,57 +154,72 @@ body {
 }
 
 .flip-card-back h3 {
-  font-size: 1.8rem;
-  color: #f1c40f;
+  font-size: 1.6rem;
+  color: var(--accent-color);
   margin-bottom: 20px;
   text-transform: uppercase;
 }
 
 .myth-truth-box {
-  background-color: rgba(255, 255, 255, 0.05); /* Fundo sutil para separar o texto */
+  background-color: rgba(255, 255, 255, 0.05); /* Um cinza bem clarinho no fundo do texto */
   padding: 20px;
   border-radius: 10px;
   text-align: left;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .myth-truth-box p {
-  font-size: 1rem;
+  font-size: 0.95rem;
   line-height: 1.6;
   margin: 0;
+  color: var(--text-color);
 }
 
-/* Linha divisória entre mito e verdade */
 .myth-truth-box hr {
   border: 0;
   height: 1px;
-  background-image: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background-image: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
   margin: 15px 0;
 }
 
-/* Destaque das palavras Mito (Vermelho) e Verdade (Verde) */
+/* Destacando os textos */
 .myth-truth-box p:first-of-type strong {
-  color: var(--secondary-color);
+  color: var(--secondary-color); /* Vermelho */
   font-size: 1.1rem;
 }
 
 .myth-truth-box p:last-of-type strong {
-  color: var(--truth-color);
+  color: var(--truth-color); /* Verde */
   font-size: 1.1rem;
 }
 
 /* =========================================
-   RODAPÉ
+   RODAPÉ E CRÉDITOS
    ========================================= */
 .main-footer {
   text-align: center;
-  padding: 25px 20px;
-  background-color: #2c3e50;
-  color: #95a5a6;
-  font-size: 0.9rem;
+  padding: 30px 20px;
+  background-color: var(--primary-color);
+  border-top: 2px solid #333;
+}
+
+.main-footer p {
+  color: #888;
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+
+.credits {
+  font-size: 1.05rem !important;
+  color: var(--accent-color) !important;
+}
+
+.credits strong {
+  color: #fff;
 }
 
 /* =========================================
-   RESPONSIVIDADE (Telas menores)
+   RESPONSIVIDADE
    ========================================= */
 @media (max-width: 768px) {
   .container {
