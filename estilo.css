@@ -61,7 +61,6 @@ main h2 {
     color: #a8a8b3;
 }
 
-/* Container que organiza os cartões em malha responsiva */
 .conteiner-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -70,38 +69,33 @@ main h2 {
 }
 
 /* ==========================================================================
-   4. ESTRUTURA DOS CARTÕES (EFEITO FLIP / 3D)
+   4. ESTRUTURA DOS CARTÕES (CORREÇÃO DO FLIP)
    ========================================================================== */
-/* O cartão define a área e a perspectiva 3D */
 .cartao {
     background-color: transparent;
-    height: 400px;
-    perspective: 1000px; /* Necessário para o efeito 3D profunda */
+    height: 440px; /* Aumentado ligeiramente para acomodar o conteúdo confortavelmente */
+    perspective: 1000px; 
 }
 
-/* O elemento interno que vai girar de fato */
 .cartao-interno {
     position: relative;
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.6s ease-in-out;
-    transform-style: preserve-3d; /* Mantém os filhos no espaço 3D */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
 }
 
-/* Gatilho da rotação ao passar o mouse */
 .cartao:hover .cartao-interno {
     transform: rotateY(180deg);
 }
 
-/* Configuração comum para ambas as faces do cartão */
 .cartao-frente, .cartao-verso {
     position: absolute;
     width: 100%;
     height: 100%;
-    backface-visibility: hidden; /* Esconde a face oposta durante o giro */
+    backface-visibility: hidden; /* Força o lado oculto a sumir completamente */
+    -webkit-backface-visibility: hidden; /* Suporte para navegadores Safari/Chrome antigos */
     border-radius: 10px;
     overflow: hidden;
     display: flex;
@@ -110,9 +104,9 @@ main h2 {
     border: 1px solid #29292e;
 }
 
-/* Estilização específica da face da Frente */
+/* CONFIGURAÇÃO DA FRENTE */
 .cartao-frente {
-    color: #e1e1e6;
+    z-index: 2; /* Garante que a frente comece no topo */
 }
 
 .cartao-frente p {
@@ -124,14 +118,24 @@ main h2 {
     justify-content: center;
 }
 
-/* Estilização específica da face do Verso */
+/* CONFIGURAÇÃO DO VERSO (ONDE ESTAVA O ERRO) */
 .cartao-verso {
     background-color: #1a1a1e;
-    color: #e1e1e6;
-    transform: rotateY(180deg); /* Já começa invertido no espaço 3D */
+    transform: rotateY(180deg);
+    z-index: 1;
+}
+
+/* Organiza os elementos do verso de cima para baixo na ordem correta */
+.cartao-verso .cartao-imagem {
+    order: 1; /* Imagem no topo */
+}
+
+.cartao-verso .status {
+    order: 2; /* Selo Mito/Verdade logo abaixo da imagem */
 }
 
 .cartao-verso p {
+    order: 3; /* Texto explicativo por último */
     padding: 15px 20px;
     font-size: 0.95rem;
     color: #c4c4cc;
@@ -141,11 +145,11 @@ main h2 {
     justify-content: center;
 }
 
-/* Imagens internas dos cartões */
+/* IMAGENS */
 .cartao-imagem {
     width: 100%;
-    height: 200px;
-    object-fit: cover; /* Garante que a imagem se ajuste sem distorcer */
+    height: 180px; /* Ajustado para dar mais espaço aos textos */
+    object-fit: cover;
     border-bottom: 3px solid #29292e;
 }
 
@@ -154,10 +158,11 @@ main h2 {
    ========================================================================== */
 .status {
     font-weight: 900;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     padding: 8px 0;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     text-align: center;
+    width: 100%;
 }
 
 .status.mito {
