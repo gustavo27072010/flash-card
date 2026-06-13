@@ -1,175 +1,215 @@
-/* ==========================================================================
-   1. CONFIGURAÇÕES GERAIS E RESET
-   ========================================================================== */
+/* =========================================
+   VARIÁVEIS DE CORES E ESTILO
+   ========================================= */
+:root {
+  --primary-color: #1a252f;
+  --secondary-color: #e74c3c; /* Vermelho para Mito */
+  --truth-color: #2ecc71;     /* Verde para Verdade */
+  --bg-color: #ecf0f1;
+  --card-radius: 15px;
+  --transition-speed: 0.8s;
+}
+
+/* =========================================
+   RESET BÁSICO
+   ========================================= */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    background-color: #121214;
-    color: #e1e1e6;
-    line-height: 1.6;
-    padding-bottom: 40px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-/* ==========================================================================
-   2. CABEÇALHO (HEADER)
-   ========================================================================== */
-.cabecalho {
-    background-color: #19191d;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    border-bottom: 2px solid #29292e;
-    margin-bottom: 40px;
+/* =========================================
+   CABEÇALHO
+   ========================================= */
+.main-header {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 50px 20px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.cabecalho h1 {
-    color: #00adb5;
-    font-size: 1.8rem;
-    letter-spacing: 2px;
+.main-header h1 {
+  font-size: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #f1c40f;
+  margin-bottom: 15px;
 }
 
-.cabecalho nav a {
-    color: #e1e1e6;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
+.main-header p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto;
+  color: #bdc3c7;
 }
 
-.cabecalho nav a:hover {
-    color: #00adb5;
+/* =========================================
+   GRADE DE CARTÕES (CSS GRID)
+   ========================================= */
+.container {
+  max-width: 1200px;
+  margin: -40px auto 40px; /* Sobrepõe levemente o cabeçalho para dar profundidade */
+  padding: 0 20px;
+  flex-grow: 1; /* Empurra o rodapé para baixo se houver pouco conteúdo */
+  z-index: 10;
+  position: relative;
 }
 
-/* ==========================================================================
-   3. CONTEÚDO PRINCIPAL E GRID
-   ========================================================================== */
-main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Organiza em colunas adaptáveis */
+  gap: 40px; /* Espaçamento entre os cartões */
 }
 
-main h2 {
-    text-align: center;
-    margin-bottom: 40px;
-    font-size: 1.5rem;
-    color: #a8a8b3;
+/* =========================================
+   ESTRUTURA DO FLIP CARD (EFEITO 3D)
+   ========================================= */
+.flip-card {
+  background-color: transparent;
+  width: 100%;
+  height: 420px; /* Mantém todos os cartões exatamente com a mesma altura */
+  perspective: 1200px; /* Profundidade do efeito 3D */
 }
 
-.conteiner-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    justify-content: center;
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform var(--transition-speed) cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
 }
 
-/* ==========================================================================
-   4. ESTRUTURA DOS CARTÕES (CORREÇÃO DO FLIP)
-   ========================================================================== */
-.cartao {
-    background-color: transparent;
-    height: 440px;
-    perspective: 1000px; 
+/* Aciona o giro quando o mouse passa por cima */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
 }
 
-.cartao-interno {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-style: preserve-3d;
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden; /* Esconde o lado oposto */
+  border-radius: var(--card-radius);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  overflow: hidden; /* Evita que o conteúdo vaze pelas bordas arredondadas */
 }
 
-.cartao:hover .cartao-interno {
-    transform: rotateY(180deg);
+/* =========================================
+   FRENTE DO CARTÃO (IMAGEM E TÍTULO)
+   ========================================= */
+.flip-card-front {
+  background-color: #fff;
+  position: relative;
 }
 
-.cartao-frente, .cartao-verso {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden; 
-    -webkit-backface-visibility: hidden; 
-    border-radius: 10px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    background-color: #202024;
-    border: 1px solid #29292e;
+.flip-card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ajusta a imagem sem distorcer */
+  filter: brightness(85%); /* Escurece a imagem levemente para destacar o texto */
 }
 
-/* CONFIGURAÇÃO DA FRENTE */
-.cartao-frente {
-    z-index: 2; 
+.front-title {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); /* Gradiente escuro na base */
+  padding: 40px 20px 20px;
+  text-align: left;
 }
 
-.cartao-frente p {
-    padding: 20px;
-    font-size: 1.05rem;
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.front-title h2 {
+  color: #fff;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  margin: 0;
 }
 
-/* CONFIGURAÇÃO DO VERSO */
-.cartao-verso {
-    background-color: #1a1a1e;
-    transform: rotateY(180deg);
-    z-index: 1;
+/* =========================================
+   VERSO DO CARTÃO (MITO / VERDADE)
+   ========================================= */
+.flip-card-back {
+  background-color: var(--primary-color);
+  color: white;
+  transform: rotateY(180deg); /* Já começa invertido */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
 }
 
-.cartao-verso .cartao-imagem {
-    order: 1; 
+.flip-card-back h3 {
+  font-size: 1.8rem;
+  color: #f1c40f;
+  margin-bottom: 20px;
+  text-transform: uppercase;
 }
 
-.cartao-verso .status {
-    order: 2; 
+.myth-truth-box {
+  background-color: rgba(255, 255, 255, 0.05); /* Fundo sutil para separar o texto */
+  padding: 20px;
+  border-radius: 10px;
+  text-align: left;
 }
 
-.cartao-verso p {
-    order: 3; 
-    padding: 15px 20px;
-    font-size: 0.95rem;
-    color: #c4c4cc;
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.myth-truth-box p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
 }
 
-/* IMAGENS */
-.cartao-imagem {
-    width: 100%;
-    height: 180px; 
-    object-fit: cover;
-    border-bottom: 3px solid #29292e;
+/* Linha divisória entre mito e verdade */
+.myth-truth-box hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+  margin: 15px 0;
 }
 
-/* ==========================================================================
-   5. SELOS DE STATUS (MITO VS VERDADE)
-   ========================================================================== */
-.status {
-    font-weight: 900;
-    font-size: 1.2rem;
-    padding: 8px 0;
-    letter-spacing: 2px;
-    text-align: center;
-    width: 100%;
+/* Destaque das palavras Mito (Vermelho) e Verdade (Verde) */
+.myth-truth-box p:first-of-type strong {
+  color: var(--secondary-color);
+  font-size: 1.1rem;
 }
 
-.status.mito {
-    background-color: #f74444;
-    color: #ffffff;
+.myth-truth-box p:last-of-type strong {
+  color: var(--truth-color);
+  font-size: 1.1rem;
 }
 
-.status.verdade {
-    background-color: #04d361;
-    color: #ffffff;
+/* =========================================
+   RODAPÉ
+   ========================================= */
+.main-footer {
+  text-align: center;
+  padding: 25px 20px;
+  background-color: #2c3e50;
+  color: #95a5a6;
+  font-size: 0.9rem;
+}
+
+/* =========================================
+   RESPONSIVIDADE (Telas menores)
+   ========================================= */
+@media (max-width: 768px) {
+  .container {
+    margin-top: 20px;
+  }
+  .main-header h1 {
+    font-size: 2rem;
+  }
 }
