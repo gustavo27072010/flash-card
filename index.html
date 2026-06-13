@@ -1,146 +1,281 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mitos e Verdades - Modo Escuro</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Sports - Mito ou Verdade</title>
+    <style>
+        /* ==========================================================================
+           1. CONFIGURAÇÕES GERAIS E RESET
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #121214;
+            color: #e1e1e6;
+            line-height: 1.6;
+            padding-bottom: 40px;
+        }
+
+        /* ==========================================================================
+           2. CABEÇALHO (HEADER)
+           ========================================================================== */
+        .cabecalho {
+            background-color: #19191d;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            border-bottom: 2px solid #29292e;
+            margin-bottom: 40px;
+        }
+
+        .cabecalho h1 {
+            color: #00adb5;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+        }
+
+        .cabecalho nav a {
+            color: #e1e1e6;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .cabecalho nav a:hover {
+            color: #00adb5;
+        }
+
+        /* ==========================================================================
+           3. CONTEÚDO PRINCIPAL E GRID
+           ========================================================================== */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        main h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1.5rem;
+            color: #a8a8b3;
+        }
+
+        .conteiner-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            justify-content: center;
+        }
+
+        /* ==========================================================================
+           4. ESTRUTURA DOS CARTÕES (ESTÁVEL EM TODOS OS NAVEGADORES)
+           ========================================================================== */
+        .cartao {
+            background-color: transparent;
+            height: 460px; /* Altura ideal para caber imagem + selo + texto */
+            perspective: 1000px; /* Cria o efeito de profundidade 3D */
+        }
+
+        .cartao-interno {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d; /* Mantém os filhos em ambiente 3D */
+        }
+
+        /* Quando passa o mouse, gira o container interno */
+        .cartao:hover .cartao-interno {
+            transform: rotateY(180deg);
+        }
+
+        /* Configuração das duas faces */
+        .cartao-frente, .cartao-verso {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            background-color: #202024;
+            border: 1px solid #29292e;
+            
+            /* Esconde o lado de trás perfeitamente em Chrome, Safari, Edge e Firefox */
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden; 
+        }
+
+        /* CONFIGURAÇÃO DA FRENTE */
+        .cartao-frente {
+            z-index: 2; /* Fica por cima antes do hover */
+        }
+
+        .cartao-frente p {
+            padding: 20px;
+            font-size: 1.05rem;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* CONFIGURAÇÃO DO VERSO */
+        .cartao-verso {
+            background-color: #1a1a1e;
+            transform: rotateY(180deg); /* Já começa invertido */
+            z-index: 1;
+        }
+
+        /* Organização linear do conteúdo do verso para evitar sobreposição */
+        .cartao-verso .cartao-imagem {
+            order: 1;
+        }
+
+        .cartao-verso .status {
+            order: 2;
+        }
+
+        .cartao-verso p {
+            order: 3;
+            padding: 20px;
+            font-size: 0.95rem;
+            color: #c4c4cc;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Ajuste das Imagens */
+        .cartao-imagem {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 3px solid #29292e;
+            display: block;
+        }
+
+        /* ==========================================================================
+           5. SELOS DE STATUS (MITO VS VERDADE)
+           ========================================================================== */
+        .status {
+            font-weight: 900;
+            font-size: 1.2rem;
+            padding: 10px 0;
+            letter-spacing: 2px;
+            text-align: center;
+            width: 100%;
+            display: block;
+        }
+
+        .status.mito {
+            background-color: #f74444;
+            color: #ffffff;
+        }
+
+        .status.verdade {
+            background-color: #04d361;
+            color: #ffffff;
+        }
+    </style>
 </head>
 <body>
 
-  <header class="main-header">
-    <div class="header-content">
-      <h1>Mitos & Verdades</h1>
-      <p>Passe o mouse sobre os cartões para descobrir a realidade por trás das maiores lendas dos esportes de contato.</p>
-    </div>
-  </header>
+    <header class="cabecalho"> 
+        <h1>CONTACT SPORTS</h1> 
+        <nav> 
+            <a href="#">Início</a> 
+        </nav> 
+    </header> 
 
-  <main class="container">
-    <section class="cards-grid">
+    <main> 
+        <h2>Descubra a verdade sobre os esportes de contato passando o mouse</h2> 
+        
+        <section class="conteiner-grid"> 
+            
+            <article class="cartao"> 
+                <div class="cartao-interno"> 
+                    <div class="cartao-frente"> 
+                        <img src="https://www.portaldoispontos.com.br/uploads/images/2025/02/o-crescimento-do-mma-no-brasil-c769a.jpeg" alt="Lutadores no octógono" class="cartao-imagem"> 
+                        <p>No MMA (Artes Marciais Mistas), vale absolutamente tudo e não existem regras ou golpes proibidos.</p> 
+                    </div> 
+                    <div class="cartao-verso"> 
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1CSC1ijtXCMRNaZupzwoUrlcKZZ1Z-m-pUg&s" alt="Árbitro de MMA" class="cartao-imagem"> 
+                        <div class="status mito">MITO</div>
+                        <p>O MMA possui regras rigorosas para proteger os atletas. Golpes na nuca, dedo no olho e chutes na cabeça de um oponente caído são estritamente proibidos.</p> 
+                    </div> 
+                </div> 
+            </article>
 
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <img src="https://images.unsplash.com/photo-1509563268479-0f004cf3f58b?auto=format&fit=crop&w=600&q=80" alt="Luvas de Boxe">
-            <div class="front-title">
-              <h2>Boxe Clássico</h2>
-            </div>
-          </div>
-          <div class="flip-card-back">
-            <h3>Boxe Clássico</h3>
-            <div class="myth-truth-box">
-              <p><strong>Mito:</strong> Boxeadores usam apenas a força dos braços para dar socos potentes.</p>
-              <hr>
-              <p><strong>Verdade:</strong> A verdadeira força de um soco nasce nas pernas e na rotação do quadril e tronco. Os braços apenas entregam o impacto final criado pelo corpo inteiro.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+            <article class="cartao"> 
+                <div class="cartao-interno"> 
+                    <div class="cartao-frente"> 
+                        <img src="https://images.unsplash.com/photo-1564415315949-7a0c4c73aab4?q=80&w=600" alt="Atletas de Jiu-Jitsu no tatame" class="cartao-imagem"> 
+                        <p>O Jiu-Jitsu Brasileiro (BJJ) foi desenvolvido para que uma pessoa menor consiga vencer um oponente maior e mais forte.</p> 
+                    </div> 
+                    <div class="cartao-verso"> 
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc8obgVSrdIXv_Gl54K_BC7_ZMw-uJmLJbVA&s" alt="Kimono no tatame" class="cartao-imagem"> 
+                        <div class="status verdade">VERDADE</div>
+                        <p>O BJJ foca em alavancas, biomecânica e técnicas de solo, permitindo que a técnica supere a força bruta através de estrangulamentos e chaves articulares.</p> 
+                    </div> 
+                </div> 
+            </article>
 
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <img src="https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=600&q=80" alt="Tatame de Judô">
-            <div class="front-title">
-              <h2>Judô</h2>
-            </div>
-          </div>
-          <div class="flip-card-back">
-            <h3>Judô</h3>
-            <div class="myth-truth-box">
-              <p><strong>Mito:</strong> O Judô exige extrema força física para conseguir derrubar o oponente no tatame.</p>
-              <hr>
-              <p><strong>Verdade:</strong> O princípio do Judô (Caminho Suave) é usar o peso e a inércia do adversário contra ele mesmo. O foco é técnica e desequilíbrio, não força bruta.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+            <article class="cartao"> 
+                <div class="cartao-interno"> 
+                    <div class="cartao-frente"> 
+                        <img src="https://s2-ge.glbimg.com/FcfNXGTtqRJhhxWrWAu2II6xhm4=/0x0:1920x1278/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_bc8228b6673f488aa253bbcb03c80ec5/internal_photos/bs/2019/G/N/UcqlZxStuvLSZpA37hIQ/ash-1629.jpg" alt="Chute de Muay Thai" class="cartao-imagem"> 
+                        <p>O Muay Thai é conhecido como a "Arte dos Oito Membros" porque os lutadores usam armas em ambas as mãos.</p> 
+                    </div> 
+                    <div class="cartao-verso"> 
+                        <img src="https://www.combatarena.pt/cdn/shop/articles/muay_thai_7cdbf69f-8ce3-44d3-a2e2-c482713c9ab3.jpg?v=1737097671" alt="Treino de joelhadas" class="cartao-imagem"> 
+                        <div class="status mito">MITO</div>
+                        <p>É chamado assim porque utiliza oito pontos de contato do próprio corpo para atacar: dois punhos, dois cotovelos, dois joelhos e duas canelas.</p> 
+                    </div> 
+                </div> 
+            </article>
 
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <img src="https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?auto=format&fit=crop&w=600&q=80" alt="Capacete de Futebol Americano">
-            <div class="front-title">
-              <h2>Futebol Americano</h2>
-            </div>
-          </div>
-          <div class="flip-card-back">
-            <h3>Futebol Americano</h3>
-            <div class="myth-truth-box">
-              <p><strong>Mito:</strong> É apenas um esporte de brutamontes se batendo sem nenhuma regra ou sentido.</p>
-              <hr>
-              <p><strong>Verdade:</strong> É um dos esportes mais táticos do mundo, apelidado de "xadrez de grama". Cada jogada possui um livro de estratégias complexo e funções ultraespecíficas.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+            <article class="cartao"> 
+                <div class="cartao-interno"> 
+                    <div class="cartao-frente"> 
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5nvkunaLgVV_s661cMvS9jkr_Jogv3tp4zA&s" alt="Lutadores de Wrestling" class="cartao-imagem"> 
+                        <p>No Wrestling (Luta Olímpica), o combate termina instantaneamente se um dos atletas tiver as duas omoplatas fixadas no chão.</p> 
+                    </div> 
+                    <div class="cartao-verso"> 
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7fmdWsieq8etU08kZhre66q8eV5ocNX9tBg&s" alt="Árbitro marcando ponto" class="cartao-imagem"> 
+                        <div class="status verdade">VERDADE</div>
+                        <p>Isso é chamado de "Pin" ou "Touché". Independentemente de quem está ganhando por pontos, encostar os dois ombros do adversário no chão garante a vitória automática.</p> 
+                    </div> 
+                </div> 
+            </article>
 
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <img src="https://images.unsplash.com/photo-1517438322307-e67111335449?auto=format&fit=crop&w=600&q=80" alt="Treino de Muay Thai">
-            <div class="front-title">
-              <h2>Muay Thai</h2>
-            </div>
-          </div>
-          <div class="flip-card-back">
-            <h3>Muay Thai</h3>
-            <div class="myth-truth-box">
-              <p><strong>Mito:</strong> Chutar bananeiras ou barras de ferro é o jeito certo de calejar as canelas.</p>
-              <hr>
-              <p><strong>Verdade:</strong> Isso destrói os ossos. O calejamento real é feito chutando aparadores e sacos de pancada, criando microfissuras que se calcificam de forma saudável.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+            <article class="cartao"> 
+                <div class="cartao-interno"> 
+                    <div class="cartao-frente"> 
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWWDmGgCTBzEJHbqlzengHt7JVC6rzdE8TzA&s" alt="Duelo de Esgrima" class="cartao-imagem">
+                         <div class="status verdade">VERDADE</div> 
+                        <p>A Esgrima é um esporte de contato onde as armas usadas nas Olimpíadas são afiadas e podem cortar os tecidos.</p> 
+                    </div> 
+                    <div class="cartao-verso"> 
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsx71cifyREBo_QYia1DVxSGBRHIBZ-YxypQ&s" alt="Ponta da espada de esgrima" class="cartao-imagem"> 
+                        <div class="status verdade">VERDADE</div>
+                        <p>As armas (florete, espada e sabre) não possuem fio de corte e as pontas são arredondadas com botões eletrônicos que registram os toques. A roupa também é feita de Kevlar, material balístico.</p> 
+                    </div> 
+                </div> 
+            </article>
 
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <img src="https://images.unsplash.com/photo-1579782500094-1a92e1069b16?auto=format&fit=crop&w=600&q=80" alt="Bola de Rugby">
-            <div class="front-title">
-              <h2>Rugby</h2>
-            </div>
-          </div>
-          <div class="flip-card-back">
-            <h3>Rugby</h3>
-            <div class="myth-truth-box">
-              <p><strong>Mito:</strong> Jogadores se machucam muito mais por não usarem armaduras e capacetes rígidos.</p>
-              <hr>
-              <p><strong>Verdade:</strong> Sem a "falsa segurança" do capacete, eles usam técnicas rigorosas de impacto focado nos ombros, resultando frequentemente em menos danos cerebrais.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <img src="https://images.unsplash.com/photo-1615592389070-bcc97e050466?auto=format&fit=crop&w=600&q=80" alt="Faixa Preta de Jiu-Jitsu">
-            <div class="front-title">
-              <h2>Jiu-Jitsu (BJJ)</h2>
-            </div>
-          </div>
-          <div class="flip-card-back">
-            <h3>Jiu-Jitsu (BJJ)</h3>
-            <div class="myth-truth-box">
-              <p><strong>Mito:</strong> É impossível vencer na luta de solo contra alguém que seja o dobro do seu tamanho.</p>
-              <hr>
-              <p><strong>Verdade:</strong> O BJJ foi desenhado para isso. Ao levar a luta para o chão, o menor usa a física do corpo (alavancas e estrangulamentos) para anular a força de um agressor maior.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </section>
-  </main>
-
-  <footer class="main-footer">
-    <p>&copy; 2026 Conhecimento Marcial & Esportivo.</p>
-    <p class="credits">
-      Desenvolvido por <strong>GUSTAVO HENRIQUE</strong> e <strong>MIGUEM DE MOURA</strong>
-    </p>
-  </footer>
+        </section> 
+    </main>
 
 </body>
 </html>
