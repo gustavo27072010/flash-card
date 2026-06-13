@@ -12,6 +12,9 @@ body {
     background-color: #f4f7f6;
     color: #333;
     line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Garante que o rodapé fique sempre em baixo */
 }
 
 /* =========================================
@@ -51,6 +54,7 @@ body {
 main {
     padding: 3rem 2rem;
     text-align: center;
+    flex: 1; /* Empurra o rodapé para o fim se a página tiver pouco conteúdo */
 }
 
 main h2 {
@@ -89,7 +93,7 @@ main h2 {
     transform-style: preserve-3d;
 }
 
-/* O gatilho: gira o cartão no hover */
+/* O gatilho: gira o cartão ao passar o rato (hover) */
 .cartao:hover .cartao-interno {
     transform: rotateY(180deg);
 }
@@ -99,7 +103,7 @@ main h2 {
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-backface-visibility: hidden; /* Esconde o verso p/ Safari */
+    -webkit-backface-visibility: hidden; /* Suporte para Safari */
     backface-visibility: hidden;         /* Esconde o verso */
     border-radius: 12px;
     overflow: hidden;
@@ -110,7 +114,7 @@ main h2 {
 }
 
 .cartao-verso {
-    transform: rotateY(180deg); /* O verso já começa virado de costas */
+    transform: rotateY(180deg); /* Começa invertido */
     background-color: #fafafa;
 }
 
@@ -131,7 +135,7 @@ main h2 {
     color: #555;
 }
 
-/* Etiquetas de Status */
+/* Etiquetas de Status (Mito / Verdade) */
 .status {
     padding: 0.4rem 1.2rem;
     font-weight: bold;
@@ -149,4 +153,20 @@ main h2 {
 
 .verdade {
     background-color: #2ecc71; /* Verde */
+}
+
+/* =========================================
+   Rodapé (Footer) - Desenvolvedores
+   ========================================= */
+.rodape {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-top: 4px solid #f1c40f; /* Linha amarela dourada igual ao link */
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.05);
 }
