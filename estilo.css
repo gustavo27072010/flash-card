@@ -73,7 +73,7 @@ main h2 {
    ========================================================================== */
 .cartao {
     background-color: transparent;
-    height: 440px; /* Aumentado ligeiramente para acomodar o conteúdo confortavelmente */
+    height: 440px;
     perspective: 1000px; 
 }
 
@@ -94,8 +94,8 @@ main h2 {
     position: absolute;
     width: 100%;
     height: 100%;
-    backface-visibility: hidden; /* Força o lado oculto a sumir completamente */
-    -webkit-backface-visibility: hidden; /* Suporte para navegadores Safari/Chrome antigos */
+    backface-visibility: hidden; 
+    -webkit-backface-visibility: hidden; 
     border-radius: 10px;
     overflow: hidden;
     display: flex;
@@ -106,7 +106,7 @@ main h2 {
 
 /* CONFIGURAÇÃO DA FRENTE */
 .cartao-frente {
-    z-index: 2; /* Garante que a frente comece no topo */
+    z-index: 2; 
 }
 
 .cartao-frente p {
@@ -118,24 +118,23 @@ main h2 {
     justify-content: center;
 }
 
-/* CONFIGURAÇÃO DO VERSO (ONDE ESTAVA O ERRO) */
+/* CONFIGURAÇÃO DO VERSO */
 .cartao-verso {
     background-color: #1a1a1e;
     transform: rotateY(180deg);
     z-index: 1;
 }
 
-/* Organiza os elementos do verso de cima para baixo na ordem correta */
 .cartao-verso .cartao-imagem {
-    order: 1; /* Imagem no topo */
+    order: 1; 
 }
 
 .cartao-verso .status {
-    order: 2; /* Selo Mito/Verdade logo abaixo da imagem */
+    order: 2; 
 }
 
 .cartao-verso p {
-    order: 3; /* Texto explicativo por último */
+    order: 3; 
     padding: 15px 20px;
     font-size: 0.95rem;
     color: #c4c4cc;
@@ -148,7 +147,7 @@ main h2 {
 /* IMAGENS */
 .cartao-imagem {
     width: 100%;
-    height: 180px; /* Ajustado para dar mais espaço aos textos */
+    height: 180px; 
     object-fit: cover;
     border-bottom: 3px solid #29292e;
 }
